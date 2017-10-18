@@ -6,7 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-
+use backend\libs\Excel;
 /**
  * Site controller
  */
@@ -22,7 +22,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error','export','import'],
                         'allow' => true,
                     ],
                     [
@@ -94,5 +94,25 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+
+    /**
+     * excel 导出
+     */
+    public function actionExport()
+    {
+        $excel = new Excel();
+        $excel->export();
+    }
+
+
+    /**
+     * excel 导入
+     */
+    public function actionImport()
+    {
+        $data = Excel::import();
+        var_dump($data);exit;
     }
 }

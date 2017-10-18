@@ -1,14 +1,17 @@
 <?php
+
 namespace api\controllers;
 
 use Yii;
 use yii\rest\Controller;
+use yii\web\BadRequestHttpException;
 
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -16,7 +19,7 @@ class SiteController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => 'api\libs\ErrorAction',
             ],
         ];
     }
@@ -28,7 +31,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        echo 'this is a api project.';
+        return 'this is a api project.';
     }
 
     /**
